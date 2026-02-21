@@ -1,0 +1,257 @@
+.weather-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  transition: background 1.2s ease-out;
+}
+
+/* --- Фон по времени и погоде --- */
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* День ясно */
+.weather-scene.day:not(.rain):not(.snow) .scene-bg {
+  background: linear-gradient(180deg, #87ceeb 0%, #b4e1f7 35%, #e0f4ff 70%, #fff8e7 100%);
+}
+
+/* День дождь */
+.weather-scene.day.rain .scene-bg,
+.weather-scene.day.storm .scene-bg {
+  background: linear-gradient(180deg, #4a5568 0%, #718096 40%, #a0aec0 100%);
+}
+
+/* День снег */
+.weather-scene.day.snow .scene-bg {
+  background: linear-gradient(180deg, #a8c5e0 0%, #c5d9ed 50%, #e8eef5 100%);
+}
+
+/* Ночь ясно */
+.weather-scene.night.stars .scene-bg {
+  background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 30%, #16213e 60%, #0f3460 100%);
+}
+
+/* Ночь дождь/гроза */
+.weather-scene.night.rain .scene-bg,
+.weather-scene.night.storm .scene-bg {
+  background: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 50%, #2d2d44 100%);
+}
+
+/* Ночь облачно */
+.weather-scene.night:not(.stars):not(.rain) .scene-bg {
+  background: linear-gradient(180deg, #1a1a2e 0%, #252540 50%, #2d2d44 100%);
+}
+
+/* --- Солнце --- */
+.sun-wrap {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+}
+
+.sun {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffec8b 0%, #ffd700 40%, #ffa500 100%);
+  box-shadow: 0 0 60px #ffd700, 0 0 100px rgba(255, 215, 0, 0.4);
+  animation: pulse-sun 4s ease-in-out infinite;
+}
+
+.sun-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 100, 0.3) 0%, transparent 70%);
+  animation: pulse-sun 4s ease-in-out infinite 0.5s;
+}
+
+@keyframes pulse-sun {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+}
+
+/* --- Луна --- */
+.moon-wrap {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  width: 70px;
+  height: 70px;
+}
+
+.moon {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f0f0e0, #e8e8d0 50%, #c0c0a0 100%);
+  box-shadow: 0 0 40px rgba(255, 255, 220, 0.5), inset -5px -5px 15px rgba(0,0,0,0.2);
+  animation: moon-float 6s ease-in-out infinite;
+}
+
+.moon-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 220, 0.15) 0%, transparent 70%);
+}
+
+@keyframes moon-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* --- Облака: круглые пушинки без размытия --- */
+.cloud-group {
+  position: absolute;
+  animation: cloud-drift linear infinite;
+}
+
+.cloud-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  left: 0;
+  top: 0;
+}
+
+/* Облако 1 — большое */
+.cloud-1 {
+  top: 14%;
+  left: -160px;
+  width: 180px;
+  height: 70px;
+  animation-duration: 90s;
+  animation-delay: 0s;
+}
+.cloud-1 .p1 { width: 56px; height: 56px; left: 0; top: 8px; }
+.cloud-1 .p2 { width: 48px; height: 48px; left: 38px; top: 0; }
+.cloud-1 .p3 { width: 52px; height: 52px; left: 72px; top: 4px; }
+.cloud-1 .p4 { width: 44px; height: 44px; left: 108px; top: 12px; }
+.cloud-1 .p5 { width: 40px; height: 40px; left: 138px; top: 18px; }
+
+/* Облако 2 — среднее */
+.cloud-2 {
+  top: 30%;
+  left: -120px;
+  width: 140px;
+  height: 55px;
+  animation-duration: 105s;
+  animation-delay: -30s;
+}
+.cloud-2 .p1 { width: 44px; height: 44px; left: 0; top: 6px; }
+.cloud-2 .p2 { width: 40px; height: 40px; left: 32px; top: 2px; }
+.cloud-2 .p3 { width: 42px; height: 42px; left: 60px; top: 6px; }
+.cloud-2 .p4 { width: 36px; height: 36px; left: 88px; top: 12px; }
+
+/* Облако 3 — меньше */
+.cloud-3 {
+  top: 24%;
+  left: -100px;
+  width: 110px;
+  height: 44px;
+  animation-duration: 78s;
+  animation-delay: -15s;
+}
+.cloud-3 .p1 { width: 36px; height: 36px; left: 0; top: 4px; }
+.cloud-3 .p2 { width: 32px; height: 32px; left: 26px; top: 2px; }
+.cloud-3 .p3 { width: 34px; height: 34px; left: 50px; top: 6px; }
+
+@keyframes cloud-drift {
+  from { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(calc(50vw + 80px)) translateY(-6px); }
+  to { transform: translateX(calc(100vw + 200px)) translateY(0); }
+}
+
+/* --- Звёзды --- */
+.stars-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  left: calc(var(--i) * 1.7%);
+  top: calc((var(--i) * 11) % 90%);
+  animation: twinkle 2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.05s);
+  box-shadow: 0 0 6px #fff;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* --- Дождь --- */
+.rain-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.5));
+  left: calc(var(--i) * 2.2%);
+  top: -20px;
+  border-radius: 50%;
+  animation: fall 0.8s linear infinite;
+  animation-delay: calc(var(--i) * -0.02s);
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh) translateX(10px); }
+}
+
+/* --- Снег --- */
+.snow-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff 30%, transparent 70%);
+  left: calc(var(--i) * 2.8%);
+  top: -10px;
+  border-radius: 50%;
+  animation: snowfall 4s linear infinite;
+  animation-delay: calc(var(--i) * -0.08s);
+}
+
+@keyframes snowfall {
+  to { transform: translateY(100vh) translateX(calc(var(--i) % 2 === 0 ? 30px : -30px)); }
+}
+
+/* --- Молния --- */
+.lightning {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.15) 30%, transparent 50%);
+  animation: flash 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes flash {
+  0%, 92%, 100% { opacity: 0; }
+  93% { opacity: 1; }
+  94% { opacity: 0; }
+  95% { opacity: 1; }
+  96% { opacity: 0; }
+}

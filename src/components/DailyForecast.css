@@ -1,0 +1,124 @@
+.daily-forecast {
+  animation: cardIn 0.5s var(--ease-out) 0.25s both;
+}
+
+.daily-forecast-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  color: inherit;
+}
+
+.daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-card {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.day-card.day {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.day-card.night {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.day-card-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.day-card-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day-card-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.day-card-temps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.day-temp-max {
+  color: inherit;
+}
+
+.day-temp-min {
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.day-precip {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .day-card {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .day-card-main {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .day-card-temps {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+    font-size: 0.95rem;
+  }
+
+  .day-precip {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 0.75rem;
+  }
+
+  .day-card-label {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,118 @@
+.weekly-chart {
+  padding: 1.5rem 1.25rem;
+  border-radius: var(--radius-lg);
+  transition: background var(--transition-ui), color var(--transition-ui), box-shadow 0.3s, border-color 0.3s;
+  border: var(--glass-border-day);
+  animation: cardIn 0.5s var(--ease-out) 0.2s both;
+}
+
+.weekly-chart.day {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #111827;
+  box-shadow: var(--shadow-glass-day);
+}
+
+.weekly-chart.night {
+  background: rgba(28, 28, 45, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #e5e7eb;
+  border: var(--glass-border-night);
+  box-shadow: var(--shadow-glass-night);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chart-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.chart-legend .dot-max {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ea580c;
+}
+
+.chart-legend .dot-min {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+.weekly-chart.night .chart-legend .dot-max {
+  background: #fbbf24;
+}
+
+.weekly-chart.night .chart-legend .dot-min {
+  background: #60a5fa;
+}
+
+@media (max-width: 480px) {
+  .weekly-chart {
+    padding: 1.15rem 1rem;
+  }
+}
+
+.chart-tooltip {
+  padding: 0.6rem 0.9rem;
+  background: rgba(17, 24, 39, 0.96);
+  color: #f3f4f6;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #fff;
+}
+
+.tooltip-max {
+  color: #fdba74;
+}
+
+.tooltip-min {
+  color: #93c5fd;
+}
