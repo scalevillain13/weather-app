@@ -19,8 +19,28 @@ function App() {
 
       <main className="content">
         <header className="header">
-          <h1 className="title">Погода</h1>
-          <p className="subtitle">Текущая погода, детали и прогноз на неделю</p>
+          <div className="header-row">
+            <div>
+              <h1 className="title">Погода</h1>
+              <p className="subtitle">Текущая погода, детали и прогноз на неделю</p>
+            </div>
+            {!loading && !error && data && (
+              <button
+                type="button"
+                className="refresh-btn"
+                onClick={refetch}
+                title="Обновить данные"
+                aria-label="Обновить погоду"
+              >
+                ↻
+              </button>
+            )}
+          </div>
+          {data?.locationFallback && (
+            <p className="location-fallback" role="status">
+              Показана погода для Москвы (местоположение недоступно)
+            </p>
+          )}
         </header>
 
         {loading && (

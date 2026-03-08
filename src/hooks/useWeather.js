@@ -10,12 +10,13 @@ export function useWeather() {
     setLoading(true);
     setError(null);
     try {
-      const { lat, lon } = await getCoords();
+      const { lat, lon, isFallback } = await getCoords();
       const raw = await fetchWeather(lat, lon);
       const current = raw.current;
       const daily = raw.daily;
       const category = getWeatherCategory(current.weather_code);
       setData({
+        locationFallback: isFallback ?? false,
         current: {
           temp: Math.round(current.temperature_2m),
           feelsLike: current.apparent_temperature != null ? Math.round(current.apparent_temperature) : null,

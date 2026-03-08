@@ -36,8 +36,15 @@
 }
 
 .sun-time-icon {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+}
+
+.sun-time-icon .weather-svg-icon {
+  width: 32px;
+  height: 32px;
 }
 
 .sun-time-item > div {

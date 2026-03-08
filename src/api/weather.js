@@ -15,6 +15,8 @@ export function getWeatherCategory(code) {
   return 'cloudy';
 }
 
+const DEFAULT_COORDS = { lat: 55.7558, lon: 37.6173 };
+
 export async function fetchWeather(lat, lon) {
   const params = new URLSearchParams({
     latitude: lat,
@@ -24,21 +26,31 @@ export async function fetchWeather(lat, lon) {
     timezone: 'auto',
     forecast_days: 7,
   });
-  const res = await fetch(`${BASE}?${params}`);
-  if (!res.ok) throw new Error('Ошибка загрузки погоды');
-  return res.json();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+  try {
+    const res = await fetch(`${BASE}?${params}`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (!res.ok) throw new Error('Сервер погоды временно недоступен. Попробуйте позже.');
+    return res.json();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') throw new Error('Превышено время ожидания. Проверьте интернет.');
+    if (err.message.includes('fetch')) throw new Error('Нет доступа к интернету. Проверьте соединение.');
+    throw err;
+  }
 }
 
 export async function getCoords() {
   return new Promise((resolve) => {
     if (!navigator.geolocation) {
-      resolve({ lat: 55.7558, lon: 37.6173 });
+      resolve({ ...DEFAULT_COORDS, isFallback: true });
       return;
     }
     navigator.geolocation.getCurrentPosition(
-      (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-      () => resolve({ lat: 55.7558, lon: 37.6173 }),
-      { timeout: 5000 }
+      (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude, isFallback: false }),
+      () => resolve({ ...DEFAULT_COORDS, isFallback: true }),
+      { timeout: 8000, maximumAge: 300000, enableHighAccuracy: false }
     );
   });
 }

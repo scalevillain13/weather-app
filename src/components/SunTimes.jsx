@@ -1,3 +1,4 @@
+import { WeatherIcon } from './WeatherIcons';
 import './SunTimes.css';
 
 function formatTime(isoStr) {
@@ -12,14 +13,14 @@ export function SunTimes({ sunrise, sunset, isDay }) {
       <h2 className="sun-times-title">Световой день</h2>
       <div className={`sun-times-grid ${isDay ? 'day' : 'night'}`}>
         <div className="sun-time-item">
-          <span className="sun-time-icon" aria-hidden>🌅</span>
+          <span className="sun-time-icon" aria-hidden><WeatherIcon name="sunrise" size="lg" /></span>
           <div>
             <span className="sun-time-label">Восход</span>
             <span className="sun-time-value">{formatTime(sunrise)}</span>
           </div>
         </div>
         <div className="sun-time-item">
-          <span className="sun-time-icon" aria-hidden>🌇</span>
+          <span className="sun-time-icon" aria-hidden><WeatherIcon name="sunset" size="lg" /></span>
           <div>
             <span className="sun-time-label">Закат</span>
             <span className="sun-time-value">{formatTime(sunset)}</span>

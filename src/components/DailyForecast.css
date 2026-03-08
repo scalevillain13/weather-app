@@ -53,8 +53,15 @@
 }
 
 .day-card-icon {
-  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+
+.day-card-icon .weather-svg-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .day-card-temps {
@@ -76,6 +83,9 @@
 }
 
 .day-precip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   font-size: 0.8rem;
   opacity: 0.85;
   white-space: nowrap;

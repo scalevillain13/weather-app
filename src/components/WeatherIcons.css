@@ -1,0 +1,23 @@
+.weather-svg-icon {
+  display: block;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.weather-svg-icon--clear {
+  color: #ea580c;
+}
+
+.weather-card.night .weather-svg-icon--clear,
+.day-card.night .weather-svg-icon--clear {
+  color: #fbbf24;
+}
+
+.weather-svg-icon--thunderstorm {
+  color: #7c3aed;
+}
+
+.weather-card.night .weather-svg-icon--thunderstorm,
+.day-card.night .weather-svg-icon--thunderstorm {
+  color: #a78bfa;
+}

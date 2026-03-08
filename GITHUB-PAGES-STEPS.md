@@ -107,9 +107,18 @@ npm run deploy
 
 1. Открой в браузере: **https://github.com/scalevillain13/weather-app**
 2. Вкладка **Settings** → слева **Pages**.
-3. В блоке **Build and deployment** → **Source**: выбери **Deploy from a branch**.
-4. **Branch**: выбери **gh-pages**, папка **/ (root)**.
-5. Нажми **Save**.
+3. В блоке **Build and deployment** → **Source** выбери один из вариантов:
+
+   **Вариант A — автоматический деплой при каждом push (рекомендуется)**  
+   - **Source**: **GitHub Actions**.  
+   - После каждого `git push origin main` сайт сам соберётся и обновится.
+
+   **Вариант B — деплой вручную через `npm run deploy`**  
+   - **Source**: **Deploy from a branch**.  
+   - **Branch**: **gh-pages**, папка **/ (root)**.  
+   - Обновление: каждый раз выполняй `npm run deploy` и пушь ветку `gh-pages`.
+
+4. Нажми **Save**.
 
 Через 1–2 минуты сайт откроется по адресу:
 

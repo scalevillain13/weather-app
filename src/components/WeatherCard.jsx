@@ -1,3 +1,4 @@
+import { WeatherIcon } from './WeatherIcons';
 import './WeatherCard.css';
 
 const WEATHER_LABELS = {
@@ -9,18 +10,9 @@ const WEATHER_LABELS = {
   thunderstorm: 'Гроза',
 };
 
-const WEATHER_ICONS = {
-  clear: '☀',
-  cloudy: '☁',
-  fog: '〰',
-  rain: '🌧',
-  snow: '❄',
-  thunderstorm: '⛈',
-};
-
 export function WeatherCard({ current, isDay }) {
-  const label = WEATHER_LABELS[current?.category] ?? 'Облачно';
-  const icon = WEATHER_ICONS[current?.category] ?? '☁';
+  const category = current?.category ?? 'cloudy';
+  const label = WEATHER_LABELS[category] ?? 'Облачно';
   const feelsLike = current?.feelsLike != null ? current.feelsLike : null;
 
   return (
@@ -29,7 +21,7 @@ export function WeatherCard({ current, isDay }) {
       <div className="weather-card-inner">
         <div className="weather-card-top">
           <div className="weather-icon" aria-hidden>
-            {icon}
+            <WeatherIcon name={category} size="xl" />
           </div>
           <div className="temp-block">
             <span className="temp-value">{current?.temp ?? '—'}</span>
