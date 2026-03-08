@@ -32,6 +32,12 @@ export function WeatherCard({ current, isDay }) {
         {feelsLike != null && (
           <p className="feels-like">Ощущается как <strong>{feelsLike}°C</strong></p>
         )}
+        {current?.wind != null && (
+          <p className="weather-wind" aria-label="Ветер">
+            <WeatherIcon name="wind" size="sm" />
+            <span>Ветер <strong>{Number(current.wind) === Math.round(current.wind) ? current.wind : Number(current.wind).toFixed(1)} м/с</strong></span>
+          </p>
+        )}
       </div>
     </section>
   );

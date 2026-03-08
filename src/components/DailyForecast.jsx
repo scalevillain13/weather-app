@@ -26,8 +26,14 @@ export function DailyForecast({ daily, isDay }) {
               <span className="day-card-icon" aria-hidden><WeatherIcon name={day.category ?? 'cloudy'} size="md" /></span>
             </div>
             <div className="day-card-temps">
-              <span className="day-temp-max">{Math.round(day.max)}°</span>
-              <span className="day-temp-min">{Math.round(day.min)}°</span>
+              <span className="day-temp-item">
+                <span className="day-temp-label">дн.</span>
+                <span className="day-temp-max">{Math.round(day.max)}°</span>
+              </span>
+              <span className="day-temp-item">
+                <span className="day-temp-label">ноч.</span>
+                <span className="day-temp-min">{Math.round(day.min)}°</span>
+              </span>
             </div>
             {day.precipitation != null && day.precipitation > 0 && (
               <span className="day-precip" title="Осадки"><WeatherIcon name="precipitation" size="sm" /> {day.precipitation} мм</span>

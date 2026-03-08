@@ -71,6 +71,25 @@
   font-weight: 600;
 }
 
+.weather-wind {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.88;
+  margin-top: 0.35rem;
+}
+
+.weather-wind .weather-svg-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+}
+
+.weather-wind strong {
+  font-weight: 600;
+}
+
 .weather-card-top {
   display: flex;
   align-items: center;

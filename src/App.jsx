@@ -1,7 +1,6 @@
 import { useWeather } from './hooks/useWeather';
 import { WeatherScene } from './components/WeatherScene';
 import { WeatherCard } from './components/WeatherCard';
-import { WeatherDetails } from './components/WeatherDetails';
 import { SunTimes } from './components/SunTimes';
 import { DailyForecast } from './components/DailyForecast';
 import { WeeklyChart } from './components/WeeklyChart';
@@ -22,7 +21,7 @@ function App() {
           <div className="header-row">
             <div>
               <h1 className="title">Погода</h1>
-              <p className="subtitle">Текущая погода, детали и прогноз на неделю</p>
+              <p className="subtitle">Текущая погода и прогноз на неделю</p>
             </div>
             {!loading && !error && data && (
               <button
@@ -62,10 +61,6 @@ function App() {
         {!loading && !error && data && (
           <>
             <WeatherCard current={data.current} isDay={isDay} />
-
-            <div className={`glass-panel ${isDay ? 'day' : 'night'}`}>
-              <WeatherDetails current={data.current} isDay={isDay} />
-            </div>
 
             <div className={`glass-panel ${isDay ? 'day' : 'night'}`}>
               <SunTimes
